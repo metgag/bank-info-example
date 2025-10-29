@@ -1,7 +1,8 @@
 import type React from "react";
 import type { FormInput } from "../../types/bank";
 import { Button, Form, Input, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { PaperClipOutlined } from "@ant-design/icons";
+import styles from "./BankInformationForm.module.scss";
 
 export const BankFormInput: React.FC<FormInput> = ({
   name, placeholder, rules,
@@ -10,7 +11,7 @@ export const BankFormInput: React.FC<FormInput> = ({
     name={name}
     rules={rules}
   >
-    <Input placeholder={placeholder} />
+    <Input className={styles.customInput} placeholder={placeholder} />
   </Form.Item>
 );
 
@@ -23,8 +24,14 @@ export const BankFormUpload: React.FC<FormInput> = ({
     valuePropName="fileList"
     getValueFromEvent={(e) => (Array.isArray(e) ? e : e?.fileList)}
   >
-    <Upload beforeUpload={() => false} maxCount={1}>
-      <Button icon={<UploadOutlined />}>
+    <Upload beforeUpload={() => false} maxCount={1}
+      className={styles.customUpload}
+    >
+      <Button
+        icon={<PaperClipOutlined />}
+        color="default"
+        variant="text"
+      >
         Upload File (.pdf/.jpg/.jpeg)
       </Button>
     </Upload>
@@ -38,6 +45,7 @@ export const BankFormSubmit: React.FC = () => (
       htmlType="submit"
       color="default"
       variant="solid"
+      className={styles.customBtn}
     >
       Save Information
     </Button>

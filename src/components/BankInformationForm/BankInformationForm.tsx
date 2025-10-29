@@ -3,6 +3,7 @@ import type React from "react";
 import type { BankInfo } from "../../types/bank";
 import bankFields from "../../config/bankFields";
 import { BankFormInput, BankFormSubmit, BankFormUpload } from "./BankFormItem";
+import styles from "./BankInformationForm.module.scss";
 
 const BankInformationForm: React.FC = () => {
   const [form] = Form.useForm<BankInfo>();
@@ -16,16 +17,17 @@ const BankInformationForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h3>Bank Information</h3>
+    <div className={styles.container}>
+      <h3 className={styles.title}>Bank Information</h3>
 
       <Form
         form={form}
         layout="vertical"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
+        className={styles.form}
       >
-        <div>
+        <div className={styles.row}>
           {bankFields
             .slice(0, 2).map(({ name, placeholder, rules }) => (
               <BankFormInput
@@ -37,7 +39,7 @@ const BankInformationForm: React.FC = () => {
             ))}
         </div>
 
-        <div>
+        <div className={styles.row}>
           <BankFormInput
             key={accountNameField.name}
             name={accountNameField.name}
